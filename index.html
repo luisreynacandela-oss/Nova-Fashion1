@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171717">
+<title>NOVA FASHION | Moda para todos</title>
+<style>
+:root{--ink:#171717;--muted:#777;--cream:#f7f5f1;--white:#fff;--gold:#c5a46d;--line:#e9e5de;--green:#16834b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5}
+button,input,select{font:inherit}
+a{color:inherit;text-decoration:none}
+.topline{background:#111;color:#eee;text-align:center;padding:8px 14px;font-size:12px;letter-spacing:1.2px}
+header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:27px;font-weight:900;letter-spacing:4px}.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:25px;align-items:center;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:.7px}
+.navlinks a:hover{color:#a17d43}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.iconbtn{border:1px solid var(--line);background:white;padding:10px 13px;border-radius:30px;cursor:pointer;font-weight:bold}
+.cart-count{background:var(--gold);color:#111;border-radius:20px;padding:2px 7px;margin-left:4px}
+.hero{max-width:1200px;margin:26px auto 0;padding:0 22px}
+.hero-panel{background:#1c1c1c;color:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;min-height:390px}
+.hero-copy{padding:55px 50px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold;text-transform:uppercase}
+.hero h1{font-size:clamp(38px,5vw,66px);line-height:1.02;margin:16px 0}
+.hero p{color:#d0d0d0;max-width:460px;margin-bottom:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:4px;padding:13px 22px;background:var(--gold);color:#111;font-weight:bold;cursor:pointer;transition:.2s}
+.btn:hover{filter:brightness(.92);transform:translateY(-1px)}
+.hero-image{min-height:300px;background:linear-gradient(90deg,#1c1c1c00,#1c1c1c00),url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85') center/cover}
+.section{max-width:1200px;margin:58px auto;padding:0 22px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:22px}
+.kicker{color:#9b7948;text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:bold}
+h2{font-size:30px;line-height:1.15;margin-top:5px}
+.section-head p{color:var(--muted);font-size:13px}
+.video-layout{display:grid;grid-template-columns:.58fr 1.42fr;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.video-text{padding:15px 18px}
+.video-text h2{font-size:27px;margin:9px 0 12px}
+.video-text p{color:#666;font-size:14px;margin-bottom:18px}
+.video-frame{background:#111;border-radius:10px;overflow:hidden;aspect-ratio:16/9;position:relative;width:100%;min-height:300px}
+.video-frame video{width:100%;height:100%;min-height:300px;display:block;object-fit:contain;background:#080808}
+.video-hint{font-size:11px;color:#888;margin-top:9px}
+.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.category{height:230px;border-radius:12px;overflow:hidden;position:relative;background-size:cover;background-position:center;display:flex;align-items:end;padding:25px;color:#fff}
+.category:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000b,transparent 70%)}
+.category>*{position:relative}.category h3{font-size:26px}.category p{font-size:13px;color:#eee}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tools input,.tools select{background:#fff;border:1px solid var(--line);border-radius:6px;padding:11px 13px;outline:none}
+.tools input{flex:1;min-width:190px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:.2s}
+.product:hover{transform:translateY(-4px);box-shadow:0 12px 28px #0000000d}
+.product img{width:100%;height:235px;object-fit:cover;display:block;background:#eee}
+.product-info{padding:14px}
+.tag{font-size:10px;color:#987746;letter-spacing:1px;text-transform:uppercase;font-weight:bold}
+.product h3{font-size:15px;margin:5px 0}
+.product-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-weight:800;font-size:17px}
+.add{border:0;background:#171717;color:white;border-radius:4px;padding:9px 12px;cursor:pointer;font-size:12px;font-weight:bold}
+.add:hover{background:#987746}
+.empty{grid-column:1/-1;text-align:center;padding:35px;color:#777;background:white;border-radius:8px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.feature{background:#fff;border:1px solid var(--line);padding:23px;border-radius:10px}
+.feature strong{display:block;margin:8px 0}.feature p{font-size:13px;color:#777}
+footer{background:#171717;color:#eee;margin-top:65px;padding:42px 22px}
+.footer-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}
+footer p,footer a{font-size:13px;color:#bbb}footer h3{margin-bottom:12px;color:#fff}
+.footer-logo{font-size:25px;font-weight:900;letter-spacing:4px;margin-bottom:10px}
+.copy{border-top:1px solid #333;margin-top:28px;padding-top:18px;text-align:center;color:#888;font-size:11px}
+.cart-panel{position:fixed;right:0;top:0;height:100%;width:min(390px,100%);background:#fff;z-index:50;box-shadow:-10px 0 35px #0002;transform:translateX(105%);transition:.25s;padding:22px;display:flex;flex-direction:column}
+.cart-panel.open{transform:translateX(0)}
+.cart-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px}
+.close{border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:18px}
+.cart-items{overflow:auto;flex:1;padding:15px 0}
+.cart-item{display:grid;grid-template-columns:65px 1fr auto;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}
+.cart-item img{width:65px;height:70px;object-fit:cover;border-radius:5px}
+.cart-item small{display:block;color:#777}
+.qty{display:flex;gap:7px;align-items:center;margin-top:5px}
+.qty button{border:1px solid var(--line);background:white;width:23px;height:23px;cursor:pointer}
+.cart-total{border-top:1px solid var(--line);padding-top:15px}
+.total-line{display:flex;justify-content:space-between;font-weight:bold;font-size:18px;margin-bottom:13px}
+.whatsapp{background:var(--green);color:#fff;width:100%;border:0;border-radius:5px;padding:14px;font-weight:bold;cursor:pointer}
+.overlay{position:fixed;inset:0;background:#0007;z-index:40;display:none}.overlay.show{display:block}
+.notice{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#171717;color:#fff;padding:12px 18px;border-radius:6px;z-index:80;opacity:0;pointer-events:none;transition:.2s;font-size:13px}.notice.show{opacity:1}
+@media(max-width:850px){.navlinks{gap:12px}.hero-panel{grid-template-columns:1fr}.hero-copy{padding:38px 30px}.hero-image{min-height:260px}.products{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr}.video-text{padding:5px}.video-frame{min-height:0}}
+@media(max-width:560px){.nav{flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;font-size:11px}.logo{font-size:22px}.hero{margin-top:14px}.hero-copy{padding:32px 23px}.categories{grid-template-columns:1fr}.category{height:190px}.products{gap:10px}.product img{height:180px}.product-info{padding:10px}.product h3{font-size:13px}.add{padding:8px}.section{margin:42px auto}.section-head{align-items:start;flex-direction:column}.features{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}.video-layout{padding:12px}.video-frame video{min-height:0}}
+</style>
+</head>
+<body>
+<div class="topline">NOVA FASHION · ESTILO QUE TE REPRESENTA · ENVÍOS Y PEDIDOS POR WHATSAPP</div>
+<header>
+  <nav class="nav">
+    <a class="logo" href="#inicio">NOVA<span>.</span>FASHION</a>
+    <div class="navlinks">
+      <a href="#inicio">Inicio</a><a href="#colecciones">Colecciones</a><a href="#catalogo">Tienda</a><a href="#video">Video</a><a href="#contacto">Contacto</a>
+    </div>
+    <div class="nav-actions"><button class="iconbtn" onclick="openCart()">🛍 Mi carrito <span class="cart-count" id="cartCount">0</span></button></div>
+  </nav>
+</header>
 
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-panel">
+    <div class="hero-copy">
+      <span class="eyebrow">Nueva colección · 2026</span>
+      <h1>VISTE TU<br>PROPIA<br>HISTORIA.</h1>
+      <p>Descubre prendas para mujer y hombre. Encuentra ese estilo que habla por ti, con comodidad, actitud y personalidad.</p>
+      <a class="btn" href="#catalogo">VER COLECCIÓN</a>
+    </div>
+    <div class="hero-image" role="img" aria-label="Modelos luciendo moda actual"></div>
+  </div>
+</section>
+
+<section class="section" id="video">
+  <div class="video-layout">
+    <div class="video-text">
+      <span class="kicker">Conoce NOVA FASHION</span>
+      <h2>La moda se vive, no solo se viste.</h2>
+      <p>Mira nuestro video y descubre el estilo, las prendas y la esencia de NOVA FASHION. El reproductor está en formato horizontal para que puedas verlo con claridad.</p>
+      <a class="btn" href="#catalogo">EXPLORAR PRENDAS</a>
+      <div class="video-hint">Reemplaza el archivo indicado por tu video horizontal.</div>
+    </div>
+    <div class="video-frame">
+      <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80">
+        <source src="videos/video-tienda.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video. Prueba con Chrome o Edge.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="colecciones">
+  <div class="section-head"><div><span class="kicker">Encuentra tu estilo</span><h2>Compra por colección</h2></div><p>Moda para cada momento.</p></div>
+  <div class="categories">
+    <a class="category" href="#catalogo" onclick="setCategory('Mujer')" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85')"><div><h3>MODA MUJER</h3><p>Prendas que resaltan tu personalidad.</p></div></a>
+    <a class="category" href="#catalogo" onclick="setCategory('Hombre')" style="background-image:url('https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=900&q=85')"><div><h3>MODA HOMBRE</h3><p>Estilo, comodidad y actitud.</p></div></a>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="section-head"><div><span class="kicker">NOVA STORE</span><h2>Nuestros productos</h2></div><p>Elige tus favoritos y agrégalos al carrito.</p></div>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Buscar prendas..." oninput="renderProducts()">
+    <select id="categoryFilter" onchange="renderProducts()"><option value="Todos">Todas las categorías</option><option>Mujer</option><option>Hombre</option></select>
+    <select id="sortFilter" onchange="renderProducts()"><option value="default">Ordenar por</option><option value="low">Precio: menor a mayor</option><option value="high">Precio: mayor a menor</option></select>
+  </div>
+  <div class="products" id="products"></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><span class="kicker">Compra con confianza</span><h2>La experiencia NOVA</h2></div></div>
+  <div class="features">
+    <div class="feature"><div style="font-size:25px">✦</div><strong>Estilo para todos</strong><p>Opciones de moda para mujer y hombre, pensadas para diferentes ocasiones.</p></div>
+    <div class="feature"><div style="font-size:25px">♡</div><strong>Atención personalizada</strong><p>Consulta tallas, colores y disponibilidad directamente por WhatsApp.</p></div>
+    <div class="feature"><div style="font-size:25px">✓</div><strong>Pedido sencillo</strong><p>Agrega tus prendas al carrito y envía tu pedido en pocos pasos.</p></div>
+  </div>
+</section>
+</main>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div><div class="footer-logo">NOVA FASHION</div><p>Tu estilo, tu esencia. Moda para mujer y hombre.</p></div>
+    <div><h3>Explora</h3><p><a href="#inicio">Inicio</a><br><a href="#catalogo">Productos</a><br><a href="#video">Nuestro video</a></p></div>
+    <div><h3>Contáctanos</h3><p>Pedidos y consultas por WhatsApp<br><a href="https://wa.me/51960865247" target="_blank" rel="noopener">+51 960 865 247</a><br>Perú</p></div>
+  </div>
+  <div class="copy">© 2026 NOVA FASHION. Todos los derechos reservados.</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras">
+  <div class="cart-top"><h2 style="font-size:22px">Tu carrito</h2><button class="close" onclick="closeCart()" aria-label="Cerrar">×</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-total"><div class="total-line"><span>Total</span><span id="cartTotal">S/ 0.00</span></div><button class="whatsapp" onclick="checkout()">ENVIAR PEDIDO POR WHATSAPP</button></div>
+</aside>
+<div class="notice" id="notice" role="status"></div>
+
+<script>
+const productsData = [
+ {id:1,name:"Blusa elegante",category:"Mujer",price:59.90,image:"https://images.unsplash.com/photo-1566206091558-7f218b696731?auto=format&fit=crop&w=700&q=80",tag:"Nuevo"},
+ {id:2,name:"Vestido casual",category:"Mujer",price:89.90,image:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80",tag:"Favorito"},
+ {id:3,name:"Conjunto urbano",category:"Mujer",price:99.90,image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80",tag:"Tendencia"},
+ {id:4,name:"Pantalón moderno",category:"Mujer",price:79.90,image:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=80",tag:"Nuevo"},
+ {id:5,name:"Camisa clásica",category:"Hombre",price:69.90,image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80",tag:"Elegante"},
+ {id:6,name:"Polera urbana",category:"Hombre",price:54.90,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",tag:"Casual"},
+ {id:7,name:"Casaca moderna",category:"Hombre",price:129.90,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80",tag:"Tendencia"},
+ {id:8,name:"Jean clásico",category:"Hombre",price:89.90,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80",tag:"Nuevo"}
+];
+// Sustituir URL incorrecta de la foto de camisa por una imagen válida.
+productsData[4].image="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80";
+let cart = JSON.parse(localStorage.getItem("novaCart") || "[]");
+const money = n => "S/ " + n.toFixed(2);
+function renderProducts(){
+ const term=document.getElementById("search").value.toLowerCase();
+ const cat=document.getElementById("categoryFilter").value;
+ const sort=document.getElementById("sortFilter").value;
+ let list=productsData.filter(p=>(cat==="Todos"||p.category===cat)&&(p.name.toLowerCase().includes(term)||p.category.toLowerCase().includes(term)));
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ const host=document.getElementById("products");
+ host.innerHTML=list.length?list.map(p=>`<article class="product"><img src="${p.image}" alt="${p.name}" loading="lazy"><div class="product-info"><span class="tag">${p.tag} · ${p.category}</span><h3>${p.name}</h3><div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart(${p.id})">AGREGAR +</button></div></div></article>`).join(""):'<div class="empty">No encontramos productos con esa búsqueda.</div>';
+}
+function saveCart(){localStorage.setItem("novaCart",JSON.stringify(cart));renderCart()}
+function addToCart(id){const p=productsData.find(x=>x.id===id);const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({...p,qty:1});saveCart();notify("¡Producto agregado al carrito!")}
+function changeQty(id,delta){const item=cart.find(x=>x.id===id);if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart()}
+function renderCart(){
+ document.getElementById("cartCount").textContent=cart.reduce((s,p)=>s+p.qty,0);
+ document.getElementById("cartTotal").textContent=money(cart.reduce((s,p)=>s+p.price*p.qty,0));
+ const host=document.getElementById("cartItems");
+ host.innerHTML=cart.length?cart.map(p=>`<div class="cart-item"><img src="${p.image}" alt=""><div><strong>${p.name}</strong><small>${money(p.price)} c/u</small><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${p.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div><strong>${money(p.price*p.qty)}</strong></div>`).join(""):'<div class="empty">Tu carrito está vacío. ¡Explora nuestros productos!</div>';
+}
+function openCart(){document.getElementById("cartPanel").classList.add("open");document.getElementById("overlay").classList.add("show")}
+function closeCart(){document.getElementById("cartPanel").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
+function checkout(){
+ if(!cart.length){notify("Agrega productos antes de realizar tu pedido.");return}
+ const lines=cart.map(p=>`• ${p.name} x${p.qty} — ${money(p.price*p.qty)}`).join("%0A");
+ const total=money(cart.reduce((s,p)=>s+p.price*p.qty,0));
+ const msg=`Hola, NOVA FASHION. Quiero realizar este pedido:%0A${lines}%0A%0ATotal: ${total}%0A¿Me confirman disponibilidad, tallas y forma de entrega?`;
+ window.open("https://wa.me/51960865247?text="+msg,"_blank");
+}
+function setCategory(cat){document.getElementById("categoryFilter").value=cat;renderProducts()}
+let noticeTimer;
+function notify(msg){const n=document.getElementById("notice");n.textContent=msg;n.classList.add("show");clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>n.classList.remove("show"),2200)}
+renderProducts();renderCart();
+</script>
+</body>
+</html>
